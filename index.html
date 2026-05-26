@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Official Eidi Collection Hub 🌙</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           1. PREMIUM SYSTEM CONFIGURATION & RESET
+           ========================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-deep-emerald: #022c22;
+            --surface-emerald: #064e3b;
+            --accent-gold: #eab308;
+            --accent-gold-hover: #ca8a04;
+            --light-cream: #fefce8;
+            --dark-charcoal: #0f172a;
+            --muted-slate: #64748b;
+            --pure-white: #ffffff;
+            --radius-premium: 24px;
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-deep-emerald);
+            color: var(--dark-charcoal);
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        /* ==========================================
+           2. RESPONSIBLE SLIDE CONTAINER FRAMEWORK
+           ========================================== */
+        .presentation-wrapper {
+            width: 100%;
+            max-width: 950px;
+            height: 600px;
+            background: var(--pure-white);
+            border-radius: var(--radius-premium);
+            box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.9);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Slide Transition Engine Rules */
+        .deck-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.5s var(--transition-timing),
+                        transform 0.5s var(--transition-timing),
+                        visibility 0.5s var(--transition-timing);
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .deck-slide.current-active {
+            opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            z-index: 5;
+        }
+
+        /* Vector Graphics & Ambient Lights */
+        .gold-glow-source {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Universal Section Title Header styling */
+        .section-header-block {
+            padding: 35px 45px 0 45px;
+            z-index: 3;
+        }
+
+        .section-headline {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--surface-emerald);
+            letter-spacing: 1px;
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 15px;
+            line-height: 1.2;
+        }
+
+        /* ==========================================
+           3. INTERACTIVE TOUCH UI COMPONENTS
+           ========================================== */
+        .navigation-dock {
+            margin-top: auto;
+            padding: 30px 45px;
+            display: flex;
+            justify-content: flex-start;
+            z-index: 10;
+        }
+
+        .interactive-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-hover));
+            color: var(--pure-white);
+            font-size: 18px;
+            font-weight: 700;
+            padding: 16px 42px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(234, 179, 8, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .interactive-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px rgba(234, 179, 8, 0.5);
+        }
+
+        .interactive-cta i {
+            transition: transform 0.3s var(--transition-timing);
+        }
+
+        .interactive-cta:hover i {
+            transform: translateX(6px);
+        }
+
+        /* ==========================================
+           4. SLIDE 1: CELEBRATION LANDING
+           ========================================== */
+        #slide-unit-1 {
+            background: linear-gradient(135deg, var(--bg-deep-emerald) 0%, var(--surface-emerald) 100%);
+            color: var(--pure-white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .eid-hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            animation: verticalFloat 4s ease-in-out infinite;
+        }
+
+        .eid-paragraph-text {
+            font-size: 20px;
+            max-width: 750px;
+            line-height: 1.6;
+            color: var(--light-cream);
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .emoji-flex-row {
+            font-size: 42px;
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           5. SLIDE 2: THE FUNNY INTERMEDIARY NOTICE
+           ========================================== */
+        .split-asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            height: 100%;
+            width: 100%;
+        }
+
+        .interactive-text-space {
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--pure-white);
+        }
+
+        .roman-urdu-banner {
+            font-size: 22px;
+            line-height: 1.6;
+            color: var(--surface-emerald);
+            font-weight: 700;
+            background-color: var(--light-cream);
+            padding: 24px;
+            border-radius: 16px;
+            border-right: 6px solid var(--accent-gold);
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+        }
+
+        .satirical-fineprint {
+            font-size: 14px;
+            color: var(--muted-slate);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .decorative-art-space {
+            background: linear-gradient(45deg, var(--surface-emerald), var(--bg-deep-emerald));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .center-vector-icon {
+            font-size: 120px;
+            color: var(--accent-gold);
+            animation: vectorPulse 3s infinite ease-in-out;
+        }
+
+        /* ==========================================
+           6. SLIDE 3: DATA CARD INTERFACE
+           ========================================== */
+        #slide-unit-3 {
+            background: var(--pure-white);
+        }
+
+        .gateway-card-wrapper {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 35px;
+            padding: 30px 45px;
+        }
+
+        .financial-display-card {
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-cream) 100%);
+            border: 2px dashed var(--accent-gold);
+            border-radius: 20px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.02);
+        }
+
+        .meta-card-tag {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted-slate);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .jazzcash-identity-brand {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ff5500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .account-number-string {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--bg-deep-emerald);
+            letter-spacing: 1px;
+            font-family: monospace, sans-serif;
+            background: var(--pure-white);
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.08);
+            display: inline-block;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .perks-list-layout {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .perk-card-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .perk-vector-shield {
+            background-color: var(--light-cream);
+            color: var(--accent-gold);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .perk-bold-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--bg-deep-emerald);
+            margin-bottom: 2px;
+        }
+
+        .perk-dim-desc {
+            font-size: 13px;
+            color: var(--muted-slate);
+            line-height: 1.4;
+        }
+
+        .closure-footer-text {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: auto;
+            padding: 20px 45px;
+            border-top: 1px solid #f1f5f9;
+            font-style: italic;
+        }
+
+        /* ==========================================
+           7. MEDIA RESPONSIVENESS ENGINE
+           ========================================== */
+        @media (max-width: 768px) {
+            body { padding: 8px; overflow-y: auto; align-items: flex-start; }
+            .presentation-wrapper { height: auto; min-height: 550px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+            .split-asymmetric-grid, .gateway-card-wrapper { grid-template-columns: 1fr; gap: 20px; }
+            .decorative-art-space { display: none; }
+            .eid-hero-title { font-size: 36px; }
+            .eid-paragraph-text { font-size: 16px; }
+            .account-number-string { font-size: 28px; padding: 10px 14px; }
+            .interactive-text-space, .gateway-card-wrapper, .navigation-dock { padding: 24px 20px; }
+            .section-header-block { padding: 25px 20px 0 20px; }
+        }
+
+        /* ==========================================
+           8. SYSTEM ANIMATION KEYFRAMES
+           ========================================== */
+        @keyframes verticalFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes vectorPulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-wrapper">
+
+        <div class="deck-slide current-active" id="slide-unit-1">
+            <div class="gold-glow-source" style="top: -150px; left: -150px;"></div>
+            
+            <h1 class="eid-hero-title">Eid Mubarakkkk!</h1>
+            <p class="eid-paragraph-text">To all my spectacular, amazing classmates! May this special day bring unmatched happiness, boundless blessings, and an endless supply of aromatic Biryani to your tables! ❤️✨</p>
+            
+            <div class="emoji-flex-row">
+                <span>🌙</span><span>🥳</span><span>🕋</span><span>🥘</span><span>🎉</span>
+            </div>
+            
+            <div class="navigation-dock" style="justify-content: center; padding-bottom: 0;">
+                <button class="interactive-cta" onclick="transitionTargetSlide(2)">
+                    Proceed to Next Slide <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="deck-slide" id="slide-unit-2">
+            <div class="split-asymmetric-grid">
+                <div class="interactive-text-space">
+                    <h2 class="section-headline">Official Eidi Notice</h2>
+                    
+                    <p class="roman-urdu-banner">
+                        "Agr kisi classmate ko eidi send krni hou tou baraya karm wo deta gaya number par send kar Sakta ha..."
+                    </p>
+                    
+                    <p class="satirical-fineprint">
+                        <strong>Important Security Note:</strong> Please do not pass past this panel empty-handed. Ignoring this automated system could negatively impact assignment coordinate provisions next semester! 😉
+                    </p>
+                    
+                    <div class="navigation-dock" style="padding: 25px 0 0 0;">
+                        <button class="interactive-cta" onclick="transitionTargetSlide(3)">
+                            Access Secure Eidi Gateway <i class="fa-solid fa-wallet"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="decorative-art-space">
+                    <div class="gold-glow-source" style="bottom: -100px; right: -100px;"></div>
+                    <i class="fa-solid fa-mosque center-vector-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="deck-slide" id="slide-unit-3">
+            <div class="gold-glow-source" style="bottom: -200px; left: -200px;"></div>
+            
+            <div class="section-header-block">
+                <h2 class="section-headline">Secure Transfer Gateway</h2>
+            </div>
+            
+            <div class="gateway-card-wrapper">
+                <div class="financial-display-card">
+                    <div class="meta-card-tag">Target Provider</div>
+                    <div class="jazzcash-identity-brand">
+                        <i class="fa-solid fa-money-bill-transfer"></i> JazzCash
+                    </div>
+                    
+                    <div class="meta-card-tag">Account Number</div>
+                    <div>
+                        <span class="account-number-string">03168703700</span>
+                    </div>
+                </div>
+                
+                <div class="perks-list-layout">
+                    <div class="perk-card-item">
+                        <div class="perk-vector-shield"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <div class="perk-bold-title">Instant Processing</div>
+                            <div class="perk-dim-desc">Incoming transactions generate real-time dopamine and massive broad smiles instantly.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-card-item">
+                        <div class="perk-vector-shield"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <div class="perk-bold-title">Classmate Protection Tax</div>
+                            <div class="perk-dim-desc">Fully decentralized structural friendship asset compilation. Safe from parental oversight.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-card-item">
+                        <div class="perk-vector-shield"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div>
+                            <div class="perk-bold-title">Strict No-Refund Policy</div>
+                            <div class="perk-dim-desc">All confirmed Eidi procedures are final. Returns exclusively output unlimited 'Duas'.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="closure-footer-text">
+                "Paisa phenko, tamasha dekho!" — Securely Monitored by the Class Management Board
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function transitionTargetSlide(slideIndex) {
+            const dynamicSlides = document.querySelectorAll('.deck-slide');
+            
+            dynamicSlides.forEach(slideNode => {
+                slideNode.classList.remove('current-active');
+            });
+            
+            const targetNode = document.getElementById(`slide-unit-${slideIndex}`);
+            if (targetNode) {
+                targetNode.classList.add('current-active');
+            }
+        }
+    </script>
+</body>
+</html>
